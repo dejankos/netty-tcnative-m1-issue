@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+dependencies {
+    implementation group: 'io.netty', name: 'netty-tcnative-boringssl-static', version: '2.0.53.Final', classifier: "linux-aarch_64"
+    implementation group: 'io.netty', name: 'netty-handler', version: '4.1.77.Final'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    manifest {
+        attributes 'Main-Class': 'org.example.App'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

@@ -1,0 +1,7 @@
+FROM bellsoft/liberica-openjdk-alpine:11.0.16
+
+VOLUME /data
+ENV JAVA_TOOL_OPTIONS="-XX:ErrorFile=/data/hs_err_pid%p.log"
+
+COPY build/libs/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]

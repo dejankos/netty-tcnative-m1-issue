@@ -1,0 +1,9 @@
+FROM bellsoft/liberica-openjdk-alpine-musl:11.0.16
+
+VOLUME /data
+RUN apk add --no-cache gcompat
+
+ENV JAVA_TOOL_OPTIONS="-XX:ErrorFile=/data/hs_err_pid%p.log"
+
+COPY build/libs/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
