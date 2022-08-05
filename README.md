@@ -1,5 +1,8 @@
 # netty tc native M1 issue
 
+[Netty issue 12669](https://github.com/netty/netty/issues/12669)
+
+
 Netty OpenSsl with tc-native support on linux-aarch_64 fails with SIGSEGV
 
 
